@@ -16,5 +16,6 @@ export interface Food {
   price: number;
   description: string;
   img: string;
+  available: boolean;
 }
 
