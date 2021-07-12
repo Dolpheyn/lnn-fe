@@ -19,3 +19,6 @@ export interface Food {
   isAvailable: boolean;
 }
 
+export interface CartItem extends Food {
+  quantity: number,
+} 
