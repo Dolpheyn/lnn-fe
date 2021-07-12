@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+    <q-header elevated style="background-color: white;color: black;">
       <q-toolbar>
         <q-btn
           flat
@@ -14,6 +14,8 @@
         <q-toolbar-title>
           Bert's Delivery App
         </q-toolbar-title>
+
+        <shopping-cart />
       </q-toolbar>
     </q-header>
 
@@ -70,12 +72,14 @@ const linksList = [
 ];
 
 import { defineComponent } from 'vue'
+import ShoppingCart from 'components/ShoppingCart.vue'
 
 export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    EssentialLink
+    EssentialLink,
+    ShoppingCart
   },
 
   data() {
