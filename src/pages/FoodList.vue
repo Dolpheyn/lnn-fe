@@ -55,7 +55,9 @@
             class="q-mt-sm"
             label="Add To Cart"
             icon="shopping_cart"
-            text-color="primary"/>
+            text-color="primary"
+            @click="$store.dispatch('cart/addItem', { ...food, quantity: 1 })"
+          />
           <q-btn 
             v-else
             disabled
