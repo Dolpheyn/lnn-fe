@@ -103,7 +103,7 @@ export default defineComponent({
   components: {},
   data() {
     const foodList: Food[] = foods;
-    const filterFoodName: String = ''
+    const filterFoodName = ''
     const categories: FoodCategory[] = getAllFoodCategories()
     const filterCategories: FoodCategory[] = []
 
