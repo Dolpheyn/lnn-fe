@@ -33,9 +33,16 @@
             />
           </q-card-section>
           
-          <q-card-section class="q-pt-xs">
+          <q-card-section v-if="food.isAvailable" class="q-pt-xs">
             <div class="text-overline">{{food.category}}</div>
             <div class="text-h5 q-mt-sm q-mb-xs">{{food.name}}</div>
+            <div class="text-caption text-grey">
+              {{food.description}}
+            </div>
+          </q-card-section>
+          <q-card-section v-else class="q-pt-xs text-grey">
+            <div class="text-overline">{{food.category}}</div>
+            <div class="text-h5 q-mt-sm q-mb-xs">{{food.name}} (Unavailable)</div>
             <div class="text-caption text-grey">
               {{food.description}}
             </div>
@@ -43,7 +50,19 @@
         </q-card-section>
 
         <q-card-actions align="right" class="q-pb-md q-pr-md">
-          <q-btn class="q-mt-sm" label="Add To Cart" icon="shopping_cart" text-color="primary"/>
+          <q-btn 
+            v-if="food.isAvailable"
+            class="q-mt-sm"
+            label="Add To Cart"
+            icon="shopping_cart"
+            text-color="primary"/>
+          <q-btn 
+            v-else
+            disabled
+            class="q-mt-sm"
+            label="Add To Cart"
+            icon="shopping_cart"
+            text-color="primary"/>
         </q-card-actions>
       </q-card>
     </div>
@@ -71,6 +90,7 @@ const foods: Food[] = [
     price: 16.0,
     description: lorem(),
     img: getImgUrl('Butter Chicken Set'),
+    isAvailable: true,
   },
   {
     id: 1,
@@ -79,6 +99,7 @@ const foods: Food[] = [
     price: 8.0,
     description: lorem(),
     img: getImgUrl('Iced Mocha'),
+    isAvailable: true,
   },
   {
     id: 2,
@@ -87,6 +108,7 @@ const foods: Food[] = [
     price: 15.0,
     description: lorem(),
     img: getImgUrl('Fried Chicken'),
+    isAvailable: true,
   },
   {
     id: 3,
@@ -95,6 +117,7 @@ const foods: Food[] = [
     price: 5.50,
     description: lorem(),
     img: getImgUrl('French Fries'),
+    isAvailable: false,
   }
 ]
 
@@ -111,7 +134,7 @@ export default defineComponent({
     return { categories, foodList, filterFoodName, filterCategories };
   },
   methods: {
-    filterFoodList() {
+    filterFoodList(): void {
       this.foodList = foods
                         .filter(food => {
                           if(!this.filterCategories.length) return true
@@ -123,7 +146,11 @@ export default defineComponent({
                         })
     },
 
-    filterCategory(category: FoodCategory) {
+    filterCategory(category: FoodCategory): void {
+      /**
+       * Add `category` to `filterCategories` if it does not exist in the list,
+       * else remove it.
+       */
       if(!this.filterCategories.includes(category)) {
         this.filterCategories.push(category)
       } else {
