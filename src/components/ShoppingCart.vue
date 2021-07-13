@@ -23,11 +23,13 @@
           <q-card style="width: 90%;">
             <q-card-section horizontal>
               <q-card-section>
-                <q-icon name="delivery_dining" style="font-size: 2.5rem" />
+                <q-icon color="deep-orange" name="delivery_dining" style="font-size: 2.5rem" />
               </q-card-section>
               <q-card-section class="q-pt-xs">
                 <div class="text-caption text-grey">Estimated Delivery</div>
-                <div class="text-h6 q-mt-sm q-mb-xs">Today, 14:00</div>
+
+                <!-- Memang takkan sampai huahsuhaushaus -->
+                <div class="text-h6 q-mt-sm q-mb-xs">Today, {{ thirtyMinutesFromNow }}</div>
               </q-card-section>
             </q-card-section>
           </q-card>
@@ -78,6 +80,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { date } from 'quasar';
+const { addToDate, formatDate } = date;
 
 export default defineComponent({
   name: 'ShoppingCart',
@@ -91,6 +95,10 @@ export default defineComponent({
   methods: {
   },
   computed: {
+    thirtyMinutesFromNow(): string {
+      const newDate = addToDate(new Date(), { minutes: 30 })
+      return formatDate(newDate, 'HH:mm')
+    }
   }
 });
 </script>
