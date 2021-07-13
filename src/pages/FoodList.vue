@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pt-xl q-px-xl q-mx-xl">
+  <q-page class="q-py-xl q-px-xl q-mx-xl">
     <!-- Search Bar -->
     <q-input 
       rounded 
@@ -11,14 +11,27 @@
 
     <!-- Categories List -->
     <div class="row q-gutter-md q-my-sm">
-      <div class="text-bold q-pt-sm">Categories:</div>
+      <div class="text-bold">Categories:</div>
       <div v-for="category in categories" :key="category" @click="filterCategory(category)">
-        <q-chip v-if="filterCategories.includes(category)" color="deep-orange" text-color="white">
+        <q-btn
+          v-if="filterCategories.includes(category)"
+          color="deep-orange"
+          text-color="white"
+          size="sm"
+          rounded
+          no-caps
+        >
           {{ category }}
-        </q-chip>
-        <q-chip v-else>
+        </q-btn>
+        <q-btn
+          color="secondary"
+          size="sm"
+          no-caps
+          rounded
+          v-else
+        >
           {{ category }}
-        </q-chip>
+        </q-btn>
       </div>
     </div>
 
