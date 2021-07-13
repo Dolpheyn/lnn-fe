@@ -15,7 +15,8 @@
           Bert's Delivery App
         </q-toolbar-title>
 
-        <shopping-cart />
+        <shopping-cart v-if="$route.path === '/menu'" />
+        <deliverer-profile v-if="$route.path === '/deliveries'" />
       </q-toolbar>
     </q-header>
 
@@ -48,7 +49,10 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+import DelivererProfile from 'components/DelivererProfile.vue'
 import EssentialLink from 'components/EssentialLink.vue'
+import ShoppingCart from 'components/ShoppingCart.vue'
 
 const linksList = [
   {
@@ -65,15 +69,13 @@ const linksList = [
   },
 ];
 
-import { defineComponent } from 'vue'
-import ShoppingCart from 'components/ShoppingCart.vue'
-
 export default defineComponent({
   name: 'MainLayout',
 
   components: {
+    DelivererProfile,
     EssentialLink,
-    ShoppingCart
+    ShoppingCart,
   },
 
   data() {
