@@ -1,49 +1,45 @@
 <template>
   <q-page class="row items-center justify-evenly">
-    <example-component
-      title="Example component"
-      active
-      :todos="todos"
-      :meta="meta"
-    ></example-component>
+    <q-card>
+      <q-card-section>
+        <q-list>
+          <EssentialLink
+            v-for="link in essentialLinks"
+            :key="link.title"
+            v-bind="link"
+          />
+        </q-list>
+      </q-card-section>
+    </q-card>
   </q-page>
 </template>
 
 <script lang="ts">
-import { Todo, Meta } from 'components/models';
-import ExampleComponent from 'components/OptionsComponent.vue';
+import EssentialLink from 'components/EssentialLink.vue';
 import { defineComponent } from 'vue';
+
+const linksList = [
+  {
+    title: 'Menu',
+    caption: 'Bert\'s menu.',
+    icon: 'menu_book',
+    link: '/menu'
+  },
+  {
+    title: 'Deliveries',
+    caption: 'Active, available and past deliveries.',
+    icon: 'delivery_dining',
+    link: '/deliveries'
+  },
+];
 
 export default defineComponent({
   name: 'PageIndex',
-  components: { ExampleComponent },
+  components: { EssentialLink },
   data() {
-    const todos: Todo[] = [
-      {
-        id: 1,
-        content: 'ct1'
-      },
-      {
-        id: 2,
-        content: 'ct2'
-      },
-      {
-        id: 3,
-        content: 'ct3'
-      },
-      {
-        id: 4,
-        content: 'ct4'
-      },
-      {
-        id: 5,
-        content: 'ct5'
-      }
-    ];
-    const meta: Meta = {
-      totalCount: 1200
-    };
-    return { todos, meta };
+    const essentialLinks = linksList;
+
+    return { essentialLinks };
   }
 });
 </script>
