@@ -10,7 +10,19 @@ const actions: ActionTree<CartStateInterface, StateInterface> = {
     } else {
       commit('AddItem', param)
     }
-    console.log(state.items)
+  },
+  incrementQuantity({ commit }, id: number) {
+    commit('IncrementQuantity', id)
+  },
+  decrementQuantity({ commit, state }, id: number) {
+    const item = state.items.find(item => item.id === id)
+    if(!item) return
+
+    if(item.quantity > 1) {
+      commit('DecrementQuantity', id)
+    } else {
+      commit('RemoveItem', id)
+    }
   },
   removeItem ({ commit }, id: number) {
     commit('RemoveItem', id)

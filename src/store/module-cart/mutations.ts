@@ -12,6 +12,10 @@ const mutation: MutationTree<CartStateInterface> = {
   IncrementQuantity(state: CartStateInterface, payload: number) {
     const [toIncrement] = state.items.filter(item => item.id === payload)
     toIncrement.quantity++
+  },
+  DecrementQuantity(state: CartStateInterface, payload: number) {
+    const [toDecrement] = state.items.filter(item => item.id === payload)
+    toDecrement.quantity--
   }
 };
 
