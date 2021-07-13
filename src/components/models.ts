@@ -43,5 +43,5 @@ export interface Order {
   id: number;
   status: OrderStatus,
   customer: Customer,
-  deliverer: Deliverer,
+  deliverer: Deliverer | null,
 }
