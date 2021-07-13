@@ -39,12 +39,31 @@
             :key="item.id"
             class="q-my-sm"
           >
-            <span class="q-mr-md">- + {{ item.quantity }}x</span> {{ item.name }} - RM {{ item.price }}
+            <q-btn-group flat class="q-mr-md">
+              <q-btn
+                size="sm"
+                color="white"
+                text-color="accent"
+                icon="add"
+                @click="$store.dispatch('cart/incrementQuantity', item.id)" />
+              <q-btn
+                size="sm"
+                color="white"
+                text-color="accent"
+                icon="remove"
+                @click="$store.dispatch('cart/decrementQuantity', item.id)" />
+            </q-btn-group>
+            <span class="q-mr-md">{{ item.quantity }}x</span>
+            {{ item.name }}
+            <span style="position: absolute;right: 40px">RM {{ item.price }}</span>
           </div>
         </q-card-section>
 
         <q-card-section style="background-color: lightgrey;">
-          <b>Subtotal: RM {{ $store.getters['cart/subTotal'] }}</b>
+          <b>
+            Subtotal:
+            <span style="position: absolute; right: 40px">RM {{ $store.getters['cart/subTotal'] }}</span>
+          </b>
         </q-card-section>
 
         <q-separator />
