@@ -5,13 +5,32 @@ export enum FoodCategory {
   Drink = 'Drink',
 }
 
-const arr: string[] = [];
+export enum OrderStatus {
+  Preparing = 'Preparing',
+  Cooking = 'Cooking',
+  ReadyForPickup = 'ReadyForPickup',
+  OutForDelivery = 'OutForDelivery',
+  Completed = 'Completed',
+}
+
+const foodCategories: string[] = [];
 export function getAllFoodCategories(): FoodCategory[] {
-  if (!arr.length) {
+  if (!foodCategories.length) {
     for (const category in FoodCategory) {
-      arr.push(category)
+      foodCategories.push(category)
     }
   }
 
-  return arr as FoodCategory[]
+  return foodCategories as FoodCategory[]
+}
+
+const orderStatuses: string[] = [];
+export function getAllOrderStatuses(): OrderStatus[] {
+  if (!orderStatuses.length) {
+    for (const status in OrderStatus) {
+      orderStatuses.push(status)
+    }
+  }
+
+  return orderStatuses as OrderStatus[]
 }

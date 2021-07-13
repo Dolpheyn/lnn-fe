@@ -1,4 +1,4 @@
-import { FoodCategory } from 'components/enums'
+import { FoodCategory, OrderStatus } from 'components/enums'
 
 export interface Todo {
   id: number;
@@ -22,3 +22,26 @@ export interface Food {
 export interface CartItem extends Food {
   quantity: number,
 } 
+
+export interface Customer {
+  id: number,
+  name: string,
+  phoneNumber: string,
+  email: string,
+  address: string,
+}
+
+export interface Deliverer {
+  id: number,
+  name: string,
+  email: string,
+  phoneNumber: string,
+  claimableComission: number,
+}
+
+export interface Order {
+  id: number;
+  status: OrderStatus,
+  customer: Customer,
+  deliverer: Deliverer,
+}
