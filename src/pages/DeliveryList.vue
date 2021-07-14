@@ -19,6 +19,7 @@
       <q-card v-for="activeOrder in activeOrders " :key="activeOrder.id" class="my-card" bordered>
         <q-card-section>
           <q-card-section class="q-pt-xs">
+            <div class="text-h5">#{{activeOrder.id}}</div>
             <div class="text-h6">{{activeOrder.customer.name}}</div>
             <div class="text-overline">{{activeOrder.customer.phoneNumber}}</div>
             <div class="text-description">{{activeOrder.customer.address}}</div>
@@ -52,6 +53,7 @@
       >
         <q-card-section>
           <q-card-section class="q-pt-xs">
+            <div class="text-h5">#{{order.id}}</div>
             <div class="text-h6">{{order.customer.name}}</div>
             <div class="text-overline">{{order.customer.phoneNumber}}</div>
             <div class="text-description">{{order.customer.address}}</div>
